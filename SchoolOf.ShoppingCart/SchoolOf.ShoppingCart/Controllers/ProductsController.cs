@@ -39,5 +39,29 @@ namespace SchoolOf.ShoppingCart.Controllers
 
             return Ok(myListOfProducts);
         }
+
+        [HttpGet]
+        [Route("{pageNumber}/{pageSize}")]
+        [ProducesResponseType(typeof(IEnumerable<ProductDto>), 200)]
+        public async Task<IActionResult> GetPaginatedProducts(int pageNumber = 1, int pageSize = 10)
+        {
+            var myListOfProducts = new List<ProductDto>();
+            var productsFromDb = this._unitOfWork.GetRepository<Product>().Find(product => !product.IsDeleted, (pageNumber - 1) * pageSize, pageSize);
+
+            foreach (var p in productsFromDb)
+            {
+                myListOfProducts.Add(new ProductDto
+                {
+                    Category = p.Category,
+                    Description = p.Description,
+                    Id = p.Id,
+                    Image = p.Image,
+                    Name = p.Name,
+                    Price = p.Price
+                });
+            }
+
+            return Ok(myListOfProducts);
+        }
     }
 }
