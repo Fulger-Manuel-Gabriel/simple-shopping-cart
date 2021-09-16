@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using SchoolOf.Common.Exceptions;
 using SchoolOf.Data.Abstraction;
 using SchoolOf.Data.Models;
 using SchoolOf.Dtos;
@@ -51,6 +52,15 @@ namespace SchoolOf.ShoppingCart.Controllers
         [ProducesResponseType(typeof(IEnumerable<ProductDto>), 200)]
         public async Task<IActionResult> GetPaginatedProducts(int pageNumber = 1, int pageSize = 10)
         {
+            if (pageNumber < 1)
+            {
+                throw new InvalidParameterException("Invalid page number argument. Should be greater than 0.");
+            }
+            if (pageSize < 1)
+            {
+                throw new InvalidParameterException("Invalid page size argument. Should be greater than 0");
+            }
+
             var productsFromDb = this._unitOfWork.GetRepository<Product>().Find(product => !product.IsDeleted, (pageNumber - 1) * pageSize, pageSize);
 
             var myListOfProducts = _mapper.Map<List<ProductDto>>(productsFromDb);

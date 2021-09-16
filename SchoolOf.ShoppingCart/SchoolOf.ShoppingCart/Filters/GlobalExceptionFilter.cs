@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
+using SchoolOf.Common.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -23,9 +24,9 @@ namespace SchoolOf.ShoppingCart.Filters
             _logger.LogError(context.Exception, guid);
             context.ExceptionHandled = true;
 
-            if (context.Exception is ArgumentException)
+            if (context.Exception is InvalidParameterException)
             {
-                var ex = (ArgumentException)context.Exception;
+                var ex = (InvalidParameterException)context.Exception;
                 var response = new ErrorDto
                 {
                     Errors = new List<string> { ex.Message }
