@@ -37,6 +37,18 @@ namespace SchoolOf.ShoppingCart.Filters
                     StatusCode = 400
                 };
             }
+            else if(context.Exception is InternalValidationException internalValidationException)
+            {
+                var response = new ErrorDto
+                {
+                    Errors = internalValidationException.Errors
+                };
+
+                context.Result = new JsonResult(response)
+                {
+                    StatusCode = 400
+                };
+            }
             else
             {
                 var response = new ErrorDto
