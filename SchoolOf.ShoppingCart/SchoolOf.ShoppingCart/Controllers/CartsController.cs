@@ -41,7 +41,7 @@ namespace SchoolOf.ShoppingCart.Controllers
 
             Cart cart = null;
 
-            cart = await cartRepo.GetByIdAsync(cartProduct.CartId);
+            cart = cartRepo.Find(x => x.Id == cartProduct.CartId, nameof(Cart.Products)).FirstOrDefault();
 
             if(cart == null)
             {
