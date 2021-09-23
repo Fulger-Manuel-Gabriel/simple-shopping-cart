@@ -1,11 +1,48 @@
-<div>
+<div class="container">
+  <div class="row m-5">
+    <h1>Products</h1>
+  </div>
+  <div class="row">
   <ng-container *ngFor="let product of products">
-    {{product.name}}
-    <img
-    id="base64ImageForDisplay"
-    alt="Preview Image"
-    width="400"
-    src="data:image/png;base64,{{product.image}}">
+  <div class="col-xs-12 col-md-6">
+    <div class="prod-info-main prod-wrap clearfix">
+      <div class="row">
+        <div class="col-md-4 col-sm-12 col-xs-12">
+          <div class="product-image">
+            <img src="data:image/png;base64,{{product.image}}" class="img-responsive rotprod">
+          </div>
+        </div>
+        <div class="col-md-7 col-sm-12 col-xs-12">
+          <div class="product-detail">
+            <h5 class="name">
+              <a href="#">
+                {{product.name}}
+              </a>
+              <a href="#">
+                <span>{{product.category}}</span>
+              </a>
 
+            </h5>
+            <p class="price-container">
+              <span>{{product.price}}€</span>
+            </p>
+            <span class="tag1"></span>
+          </div>
+          <div class="description">
+            <p>{{getProductDescription(product.description)}}</p>
+          </div>
+          <div class="product-info smart-form">
+            <div class="row">
+              <div class="col-md-12">
+                <a href="javascript:void(0);" class="btn btn-danger btn-cart"><span>Add to cart</span></a>
+                <a href="javascript:void(0);" class="btn btn-info"><span>More info</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   </ng-container>
+  </div>
 </div>

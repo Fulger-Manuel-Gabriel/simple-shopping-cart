@@ -5,7 +5,7 @@ import { ProductService } from '../service/product.service';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
 
@@ -19,4 +19,7 @@ export class ProductListComponent implements OnInit {
     });
   }
 
+  public getProductDescription(description: string | string) {
+    return description.length > 100 ?  description.substr(0,100)+'...' : description;
+  }
 }
