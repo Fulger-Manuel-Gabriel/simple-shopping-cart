@@ -26,6 +26,45 @@ namespace SchoolOf.ShoppingCart.Controllers
             _cartValidator = cartValidator;
         }
 
+        [HttpDelete]
+        [ProducesResponseType(typeof(CartDto), 200)]
+        public async Task<IActionResult> DeleteProductToCartAsync(CartProductDto productToCartDto)
+        {
+            var validationResult = await _cartValidator.ValidateAsync(productToCartDto);
+            if (!validationResult.IsValid)
+            {
+                throw new InternalValidationException(validationResult.Errors.Select(validationError => validationError.ErrorMessage).ToList());
+            } 
+
+            var cartRepo = this._unitOfWork.GetRepository<Cart>();
+            var cartEntity = cartRepo
+                    .Find(x => !x.IsDeleted && x.Id == productToCartDto.CartId, nameof(Cart.Products)) 
+                    .FirstOrDefault();
+
+            cartEntity.Products.Remove(cartEntity.Products.FirstOrDefault(x => x.Id == productToCartDto.ProductId));
+
+            await this._unitOfWork.SaveChangesAsync();
+
+            return Ok(this._mapper.Map<CartDto>(cartEntity));
+        }
+
+        [HttpGet]
+        [Route("{cartId}")]
+        [ProducesResponseType(typeof(CartDto), 200)]
+        public async Task<IActionResult> GetAsync(long cartId)
+        {
+            var cart = this._unitOfWork.GetRepository<Cart>()
+                    .Find(x => !x.IsDeleted && x.Status == Common.Enums.CartStatus.Created && x.Id == cartId, nameof(Cart.Products))
+                    .FirstOrDefault();
+
+            if (cart is null)
+            {
+                throw new InternalValidationException("Invalid 'Cart id'");
+            }
+
+            return Ok(this._mapper.Map<CartDto>(cart));
+        }
+
         [HttpPost]
         [ProducesResponseType(typeof(CartProductDto), 200)]
         public async Task<IActionResult> AddProductToCart([FromBody]CartProductDto cartProduct)

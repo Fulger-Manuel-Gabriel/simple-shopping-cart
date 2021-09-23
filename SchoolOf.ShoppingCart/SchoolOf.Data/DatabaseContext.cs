@@ -35,7 +35,7 @@ namespace SchoolOf.Data
 
             modelBuilder.Entity<Order>().HasKey(x => x.Id);
             modelBuilder.Entity<Order>().Property(x => x.Name).IsRequired().HasMaxLength(100);
-            modelBuilder.Entity<Order>().Property(x => x.Adress).IsRequired().HasMaxLength(500);
+            modelBuilder.Entity<Order>().Property(x => x.Address).IsRequired().HasMaxLength(500);
             modelBuilder.Entity<Order>().Property(x => x.Email).IsRequired().HasMaxLength(255);
             modelBuilder.Entity<Order>().Property(x => x.PhoneNo).IsRequired().HasMaxLength(10);
             modelBuilder.Entity<Order>().Property(x => x.Total).IsRequired();

@@ -27,8 +27,6 @@ namespace SchoolOf.ShoppingCart.Controllers
         [ProducesResponseType(typeof(IEnumerable<ProductDto>), 200)]
         public async Task<IActionResult> GetProducts()
         {
-            throw new System.Exception();
-
             var myListOfProducts = new List<ProductDto>();
             var productsFromDb = this._unitOfWork.GetRepository<Product>().Find(product => !product.IsDeleted);
 
