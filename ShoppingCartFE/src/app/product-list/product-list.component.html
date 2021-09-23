@@ -24,12 +24,12 @@
 
             </h5>
             <p class="price-container">
-              <span>{{product.price}}€</span>
+              <span>{{product.price  | currency : 'USD':'symbol-narrow':'4.0' }}</span>
             </p>
             <span class="tag1"></span>
           </div>
           <div class="description">
-            <p>{{getProductDescription(product.description)}}</p>
+            <p>{{product.description | elipsis : 100}}</p>
           </div>
           <div class="product-info smart-form">
             <div class="row">
