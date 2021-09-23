@@ -10,7 +10,7 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  private readonly url = 'assets/products.json';
+  private readonly url = 'api/Products';
 
   loadProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.url);
