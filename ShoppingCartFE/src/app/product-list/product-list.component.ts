@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../model/product';
+import { Product } from '../core/model/product';
 import { ProductService } from '../service/product.service';
 
 @Component({
@@ -19,7 +19,4 @@ export class ProductListComponent implements OnInit {
     });
   }
 
-  public getProductDescription(description: string | string) {
-    return description.length > 100 ?  description.substr(0,100)+'...' : description;
-  }
 }

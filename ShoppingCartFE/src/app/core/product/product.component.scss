@@ -1,4 +1,3 @@
-// todo cleanup unused classes
 .prod-info-main {
   border: 1px solid #6d727394;
   margin-bottom: 20px;
@@ -35,6 +34,7 @@
   -webkit-transform: rotate(360deg);
   -moz-transform: rotate(360deg);
   -o-transform: rotate(360deg);
+  transform: rotate(360deg);
 }
 
 
