@@ -1,0 +1,7 @@
+<ng-container *ngIf="!isLoading else loading">
+    <app-product [product]="product"></app-product>
+</ng-container>
+<ng-template #loading>
+    <div>Loading</div>
+</ng-template>
+
