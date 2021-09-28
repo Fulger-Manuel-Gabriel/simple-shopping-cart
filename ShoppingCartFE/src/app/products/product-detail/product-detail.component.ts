@@ -17,6 +17,7 @@ export class ProductDetailComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    /*
     const productId = Number(this.route.snapshot.queryParams.productId);
     this.productService.loadProducts().subscribe( products => {
       const prod = products.find(prod => prod.id === productId);
@@ -24,6 +25,11 @@ export class ProductDetailComponent implements OnInit {
         this.product = prod;
         this.isLoading = false;
       }
+    });
+    */
+    this.route.data.subscribe(data => {
+      this.product = data.product;
+      this.isLoading = false;
     });
   }
 

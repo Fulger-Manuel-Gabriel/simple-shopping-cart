@@ -11,6 +11,9 @@ export class ProductComponent implements OnInit {
   @Input()
   product!: Product;
 
+  @Input()
+  renderType: 'list' | 'details' = 'list';
+
   @Output() public selected: EventEmitter<number> = new EventEmitter();
 
   constructor() { }

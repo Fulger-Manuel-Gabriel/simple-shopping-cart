@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { ElipsisPipe } from './pipe/elipsis.pipe';
 import { ProductComponent } from './product/product.component';
 import { BackgroundDirective } from './directive/background.directive';
+import { ProductService } from './service/product.service';
+import { RouterModule } from '@angular/router';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 
 
@@ -10,15 +13,18 @@ import { BackgroundDirective } from './directive/background.directive';
   declarations: [
     ElipsisPipe,
     ProductComponent,
-    BackgroundDirective
+    BackgroundDirective,
+    ErrorPageComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports : [
     ElipsisPipe,
     ProductComponent,
-    BackgroundDirective
+    BackgroundDirective,
+    ErrorPageComponent
   ]
 })
 export class CoreModule { }
