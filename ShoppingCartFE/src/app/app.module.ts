@@ -20,4 +20,6 @@ import { ProductListComponent } from './products/product-list/product-list.compo
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  
+ }

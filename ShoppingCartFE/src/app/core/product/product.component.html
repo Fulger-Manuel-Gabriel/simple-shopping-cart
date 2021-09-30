@@ -13,7 +13,8 @@
 </div>  
 <ng-container *ngIf="renderType === 'list'">
   <div class="d-flex justify-content-center pt-3 pb-5">
-    <button (click)="selectProd(product.id)">select</button>
-    <a [routerLink]="['details']" [queryParams]="{ productId: product.id }" class="px-2"><button>view details</button></a>
+    <button (click)="selectProd(product.id)"><fa-icon [icon]="['fas', 'info-circle']" [size]="'sm'"></fa-icon>  select</button>
+    <a [routerLink]="['details']" [queryParams]="{ productId: product.id }" class="px-2">
+      <button><fa-icon [icon]="['fas', 'check-circle']" [size]="'sm'"> </fa-icon> view details</button></a>
   </div>
 </ng-container>
