@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { ProductListComponent } from './products/product-list/product-list.component';
+import { ViewCartComponent } from './components/view-cart/view-cart.component';
+import { OrderComponent } from './components/order/order.component';
 
 @NgModule({
   declarations: [
