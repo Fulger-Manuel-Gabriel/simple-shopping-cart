@@ -24,6 +24,10 @@ export class CartService {
     return this.cart$.asObservable();
   }
 
+  public clearCart() {
+    return this.cart$.next({id: 0, products: []});
+  }
+
   loadCart(cartId?: number) {
     let id = cartId;
     if (cartId || sessionStorage.getItem(this.CART_ID)) {
