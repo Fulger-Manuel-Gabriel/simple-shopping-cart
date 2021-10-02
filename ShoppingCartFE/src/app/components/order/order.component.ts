@@ -28,6 +28,12 @@ export class OrderComponent implements OnInit {
     });
   }
 
+  name:string="";
+  address:string="";
+  email:string="";
+  phoneNo:string="";
+  cartId:string="";
+
   private createForm() {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
